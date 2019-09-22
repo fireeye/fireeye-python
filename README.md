@@ -1,1 +1,1 @@
-# fireeyepy
+# FireEye Client Library for Python
