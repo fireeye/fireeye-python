@@ -23,7 +23,7 @@ import fireeyepy
 ## Detection On Demand
 Construct a Detection object with your api key:
 ```python
-detection = fireeye.Detection(key=api_key)
+detection = fireeyepy.Detection(key=api_key)
 ```
 ### Upload A File
 ```python
