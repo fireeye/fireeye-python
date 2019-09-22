@@ -8,6 +8,48 @@ __version__ = "0.0.1"
 logger = logging.getLogger("fireeye")
 
 class Detection:
+      """The Detection class allows your app to communicate with FireEye's Detection On Demand service.add()
+    
+    The Detection On Demand service provides the ability for you to submit files and md5sum hashes for malware analysis.add()
+
+    This client handles constructing and sending HTTP requests to Detection On Demand as well as parsing any responses received.
+
+
+    Keyword Arguments:
+        key {string} -- The API key provided to you by the Detection On Demand service.
+
+
+    Example of sending a file in for malware analysis.
+    ```python
+    import fireeyepy
+
+    detection = fireeyepy.Detection(key="yourapikeyhere")
+
+    result = detection.submit_file(
+      files={
+        "file": ("filenamehere.txt", open(path/to/filenamehere.txt", "r"))
+      }
+    )
+    ```
+
+    Example of getting a file result from a previous analysis
+    ```python
+    import fireeyepy
+
+    detection = fireeyepy.Detection(key="yourapikeyhere")
+
+    result = detection.get_file_result("yoursubmissionkey")
+    ```
+
+    Example of getting the results of a hash that was previously analyzed.
+    ```python
+    import fireeyepy
+
+    detection = fireeyepy.Detection(key="yourapikeyhere")
+
+    result = detection.get_hash_lookup(hash="md5sumhashhere")
+    ```
+    """
   def __init__(self,key=None):
     self.api_key = key or os.environ.get("FIREEYE_API_KEY", None)
     self.api_host = "feapi.marketplace.apps.fireeye.com"
@@ -18,15 +60,45 @@ class Detection:
     self.session = requests.Session()
   
   def submit_file(self, body=None, files=None):
+    """Allows you to submit a file object for malware analysis.
+    
+    Keyword Arguments:
+        body {dict} -- The body of your http request. This is optional. (default: {None})
+        files {io.TextIOWrapper} -- The file you will be submitting for analysis. (default: {None})
+    
+    Returns:
+        dict -- Returns a dict of the http response.
+    """
     return self.post(self.api_host, "/file-submit", body, files)
 
   def get_file_result(self, submission_id):
+    """Allows you to get the full malware analysis results of a given malware analysis submission id.
+    
+    Arguments:
+        submission_id {string} -- This is a Detection On Demand submission id, typically received in the response of submit_file().
+    
+    Returns:
+        dict -- Returns a dict of the http response.
+    """
     return self.get(self.api_host, "/file-result", {"submission_id": submission_id})
 
   def get_hash_lookup(self, hash):
+    """Allows you to get the malware analysis results for a given hash.
+    
+    Arguments:
+        hash {string} -- The md5sum of the file you would like to check.
+    
+    Returns:
+        dict -- Returns a dict of the http response.
+    """
     return self.get(self.api_host, "/hash-lookup", {"hash": hash})
 
   def get_submissions(self):
+    """Allows you to get a list of all of your submissions.
+    
+    Returns:
+        dict -- Returns a dict of all of the submissions under your API key.
+    """
     return self.get(self.api_host, "/get-submissions")
 
   def get(self, host, request_uri, params=None):
