@@ -8,48 +8,50 @@ __version__ = "0.0.1"
 logger = logging.getLogger("fireeye")
 
 class Detection:
-      """The Detection class allows your app to communicate with FireEye's Detection On Demand service.add()
-    
-    The Detection On Demand service provides the ability for you to submit files and md5sum hashes for malware analysis.add()
+  """The Detection class allows your app to communicate with FireEye's Detection On Demand service.add()
+  
+  The Detection On Demand service provides the ability for you to submit files and md5sum hashes for malware analysis.add()
 
-    This client handles constructing and sending HTTP requests to Detection On Demand as well as parsing any responses received.
-
-
-    Keyword Arguments:
-        key {string} -- The API key provided to you by the Detection On Demand service.
+  This client handles constructing and sending HTTP requests to Detection On Demand as well as parsing any responses received.
 
 
-    Example of sending a file in for malware analysis.
-    ```python
-    import fireeyepy
+  Keyword Arguments:
+      key {string} -- The API key provided to you by the Detection On Demand service.
 
-    detection = fireeyepy.Detection(key="yourapikeyhere")
 
-    result = detection.submit_file(
-      files={
-        "file": ("filenamehere.txt", open(path/to/filenamehere.txt", "r"))
-      }
-    )
-    ```
+  Example of sending a file in for malware analysis.
+  ```python
+  import fireeyepy
 
-    Example of getting a file result from a previous analysis
-    ```python
-    import fireeyepy
+  detection = fireeyepy.Detection(key="yourapikeyhere")
 
-    detection = fireeyepy.Detection(key="yourapikeyhere")
+  result = detection.submit_file(
+    files={
+      "file": ("filenamehere.txt", open("path/to/filenamehere.txt", "r"))
+    }
+  )
+  ```
+  ------------------------------
 
-    result = detection.get_file_result("yoursubmissionkey")
-    ```
+  Example of getting a file result from a previous analysis
+  ```python
+  import fireeyepy
 
-    Example of getting the results of a hash that was previously analyzed.
-    ```python
-    import fireeyepy
+  detection = fireeyepy.Detection(key="yourapikeyhere")
 
-    detection = fireeyepy.Detection(key="yourapikeyhere")
+  result = detection.get_file_result("yoursubmissionkey")
+  ```
+  ------------------------------
 
-    result = detection.get_hash_lookup(hash="md5sumhashhere")
-    ```
-    """
+  Example of getting the results of a hash that was previously analyzed.
+  ```python
+  import fireeyepy
+
+  detection = fireeyepy.Detection(key="yourapikeyhere")
+
+  result = detection.get_hash_lookup(hash="md5sumhashhere")
+  ```
+  """
   def __init__(self,key=None):
     self.api_key = key or os.environ.get("FIREEYE_API_KEY", None)
     self.api_host = "feapi.marketplace.apps.fireeye.com"
