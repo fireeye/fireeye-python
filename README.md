@@ -29,7 +29,7 @@ detection = fireeyepy.Detection(key=api_key)
 ```python
 response = detection.submit_file(
   files={
-    "file": ('maliciousfile.txt', open('./maliciousfile.txt', 'rb'))
+    "file": ('filename', open('./path/to/filename', 'r'))
   }
 )
 ```
