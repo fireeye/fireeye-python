@@ -71,20 +71,17 @@ class Detection:
     Returns:
         dict -- Returns a dict of the http response.
     """
-    return self.post(self.api_host, "/file-submit", body, files)
+    return self.post(self.api_host, "/files", body, files)
 
-  def get_file_result(self, submission_id):
-    """Allows you to get the full malware analysis results of a given malware analysis submission id.
-    
-    Arguments:
-        submission_id {string} -- This is a Detection On Demand submission id, typically received in the response of submit_file().
+  def get_report(self, report_id, extended=False):
+    """Allows you to get a list of all of your submissions.
     
     Returns:
-        dict -- Returns a dict of the http response.
+        dict -- Returns a dict of all of the submissions under your API key.
     """
-    return self.get(self.api_host, "/file-result", {"submission_id": submission_id})
+    return self.get(self.api_host, "/reports/{}".format(report_id), {"extended": extended})
 
-  def get_hash_lookup(self, hash):
+  def get_hash(self, hash):
     """Allows you to get the malware analysis results for a given hash.
     
     Arguments:
@@ -93,15 +90,7 @@ class Detection:
     Returns:
         dict -- Returns a dict of the http response.
     """
-    return self.get(self.api_host, "/hash-lookup", {"hash": hash})
-
-  def get_submissions(self):
-    """Allows you to get a list of all of your submissions.
-    
-    Returns:
-        dict -- Returns a dict of all of the submissions under your API key.
-    """
-    return self.get(self.api_host, "/get-submissions")
+    return self.get(self.api_host, "/hashes/{}".format(hash))
 
   def get(self, host, request_uri, params=None):
     uri = "https://{host}{request_uri}".format(host=host, request_uri=request_uri)
