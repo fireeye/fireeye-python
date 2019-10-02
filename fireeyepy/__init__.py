@@ -1,3 +1,4 @@
+# Copyright (C) 2019 FireEye, Inc. All Rights Reserved.
 from platform import python_version
 from .errors import *
 import os

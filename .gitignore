@@ -1,3 +1,4 @@
+# Copyright (C) 2019 FireEye, Inc. All Rights Reserved.
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -89,6 +90,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+python/
 
 # Spyder project settings
 .spyderproject
@@ -102,3 +104,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.vscode
