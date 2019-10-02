@@ -34,12 +34,16 @@ response = detection.submit_file(
 )
 ```
 
-### Retrieve File Results
+### Retrieve File Report
 ```python
-response = detection.get_file_result(submission_id)
+response = detection.get_report(report_id)
+```
+You may also provide the optional `extended=True` flag to get the full, in-depth report:
+```python
+response = detection.get_report(report_id, extended=True)
 ```
 
 ### Perform Hash Lookup
 ```python
-response = detection.get_hash_lookup(hash)
+response = detection.get_hash(hash)
 ```
