@@ -6,11 +6,17 @@ Installation
 
 To install the Python client library:
 ```
+pip install fireeyepy
+```
+
+To upgrade your installed library:
+```
+pip install fireeyepy --upgrade
+```
+
+Alternatively, you can clone the repository via the command line:
+```
 git clone https://github.com/fireeye/fireeye-python.git
-cd fireeye-python
-pip install -r requirements.txt
-python setup.py bdist_wheel
-pip install -e .
 ```
 
 Usage
