@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/fireeyepy.svg)](https://badge.fury.io/py/fireeyepy)
+
 # FireEye Client Library for Python
 This is the Python client library for all things FireEye API. Currently it only supports FireEye's Detection On Demand but will have support for other FireEye API's soon.
 
