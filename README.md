@@ -38,7 +38,7 @@ detection = fireeyepy.Detection(key=api_key)
 ```python
 response = detection.submit_file(
   files={
-    "file": ('filename', open('./path/to/filename', 'r'))
+    "file": ('filename', open('./path/to/filename', 'rb'))
   }
 )
 ```
