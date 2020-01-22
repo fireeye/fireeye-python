@@ -2,7 +2,7 @@
 [![Python versions supported](https://img.shields.io/pypi/pyversions/fireeyepy.svg)](https://pypi.python.org/pypi/fireeyepy)
 
 # FireEye Client Library for Python
-This is the Python client library for all things FireEye API. Currently it only supports FireEye's Detection On Demand but will have support for other FireEye API's soon.
+This is the Python client library for all things FireEye API.  The current list of supported APIs and endpoints is limited but growing every day.
 
 Installation
 ------------
@@ -24,15 +24,15 @@ git clone https://github.com/fireeye/fireeye-python.git
 
 Usage
 -----
-Begin by importing the 'fireeye' module:
+Begin by importing one or more modules from the fireeyepy package:
 ```python
-import fireeyepy
+from fireeyepy import *
 ```
 
 ## Detection On Demand
 Construct a Detection object with your api key:
 ```python
-detection = fireeyepy.Detection(key=api_key)
+detection = detection_on_demand.Detection(key=api_key)
 ```
 ### Upload A File
 ```python
@@ -55,4 +55,16 @@ response = detection.get_report(report_id, extended=True)
 ### Perform Hash Lookup
 ```python
 response = detection.get_hash(hash)
+```
+
+## Helix
+Construct a Helix object with your api key and helix instance id, and optionally your Helix instance hostname:
+```python
+h = helix.Helix('api key', 'hexaaa999', host='apps.fireeye.com')
+```
+
+### Get a list of alerts
+Get a list of alerts in your Helix instance.  The function arguments will accept named parameters for any query parameters supported by the endpoint.
+```python
+alerts = h.get_alerts(limit=3)
 ```
