@@ -1,0 +1,11 @@
+# InlineObject175
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**saved_search** | **str** |  | 
+**user** | **str** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
