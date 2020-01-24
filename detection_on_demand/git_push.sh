@@ -19,7 +19,7 @@ if [ "$git_user_id" = "" ]; then
 fi
 
 if [ "$git_repo_id" = "" ]; then
-    git_repo_id="fireeye-python/tree/test/openapi-generator"
+    git_repo_id="fireeye-python/tree/test/openapi-generator/detection_on_demand"
     echo "[INFO] No command line input provided. Set \$git_repo_id to $git_repo_id"
 fi
 
