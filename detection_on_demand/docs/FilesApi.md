@@ -1,4 +1,4 @@
-# detection.FilesApi
+# feye_detection.FilesApi
 
 All URIs are relative to *https://feapi.marketplace.apps.fireeye.com*
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 Submit a single file for analysis
 
-This endpoint submits a binary file for analysis. **Your file must be less than 5MB.**
+This endpoint submits a binary file for analysis. **Your file must be less than 32MB.**
 
 ### Example
 
@@ -20,10 +20,10 @@ This endpoint submits a binary file for analysis. **Your file must be less than 
 ```python
 from __future__ import print_function
 import time
-import detection
-from detection.rest import ApiException
+import feye_detection
+from feye_detection.rest import ApiException
 from pprint import pprint
-configuration = detection.Configuration()
+configuration = feye_detection.Configuration()
 # Configure API key authorization: FireEyeAPIKey
 configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -32,7 +32,7 @@ configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Defining host is optional and default to https://feapi.marketplace.apps.fireeye.com
 configuration.host = "https://feapi.marketplace.apps.fireeye.com"
 # Create an instance of the API class
-api_instance = detection.FilesApi(detection.ApiClient(configuration))
+api_instance = feye_detection.FilesApi(feye_detection.ApiClient(configuration))
 file = '/path/to/file' # file | This is the binary file that you want to submit for malware analysis.
 
 try:
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
-**413** | Request Entity Too Large -- The file you provided was more than 5MB. |  -  |
+**413** | Request Entity Too Large -- The file you provided was more than 32MB. |  -  |
 **429** | Too Many Requests |  -  |
 **500** | Internal Server Error |  -  |
 

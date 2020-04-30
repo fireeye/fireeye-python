@@ -3,15 +3,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uuid** | **str** |  | [optional] 
-**is_url** | **bool** |  | [optional] 
-**chk_sum** | [**ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoAnalysisObjectsChkSum**](ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoAnalysisObjectsChkSum.md) |  | [optional] 
-**is_child** | **bool** | Whether this file is a child of another. The file could contain other files or other embedded objects. | [optional] 
-**da_weight** | **int** | The degree of maliciousness.  100 is considered malicious, and higher numbers indicate a greater degree of maliciousness. | [optional] 
-**file_desc** | **str** |  | [optional] 
-**signature** | **str** |  | [optional] 
-**work_orders** | [**ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoAnalysisObjectsWorkOrders**](ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoAnalysisObjectsWorkOrders.md) |  | [optional] 
-**original_name** | **str** |  | [optional] 
+**sha256** | **str** | sha256 of analysed object | 
+**chk_sum** | [**list[ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoChkSum]**](ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoChkSum.md) | results of different static analysis engines ran for object | 
+**md5_sum** | **str** | md5 of analysed object | 
+**is_child** | **bool** | Whether this file is a child of another. The file could contain other files or other embedded objects. | 
+**file_desc** | **str** | File extension of analysed object | 
+**work_orders** | [**list[ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoWorkOrders]**](ReportExtendedEngineResultsDynamicAnalysisAnalysisInfoWorkOrders.md) | details results of Dynamic analysis jobs ran for analysis object | 
+**original_name** | **str** | File name of a analysis object | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

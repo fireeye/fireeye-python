@@ -1,4 +1,4 @@
-# detection.ReportsApi
+# feye_detection.ReportsApi
 
 All URIs are relative to *https://feapi.marketplace.apps.fireeye.com*
 
@@ -20,10 +20,10 @@ This endpoint fetches the results of a single file submission, known as a report
 ```python
 from __future__ import print_function
 import time
-import detection
-from detection.rest import ApiException
+import feye_detection
+from feye_detection.rest import ApiException
 from pprint import pprint
-configuration = detection.Configuration()
+configuration = feye_detection.Configuration()
 # Configure API key authorization: FireEyeAPIKey
 configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -32,7 +32,7 @@ configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Defining host is optional and default to https://feapi.marketplace.apps.fireeye.com
 configuration.host = "https://feapi.marketplace.apps.fireeye.com"
 # Create an instance of the API class
-api_instance = detection.ReportsApi(detection.ApiClient(configuration))
+api_instance = feye_detection.ReportsApi(feye_detection.ApiClient(configuration))
 report_id = '992694b3-20ab-4245-9b4c-8f3a1b7ec3b6' # str | The report ID returned after successfully submitting a file.
 extended = false # bool | Setting extended to true will allow you to see all malware engine reports. (optional)
 
