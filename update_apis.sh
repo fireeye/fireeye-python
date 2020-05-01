@@ -12,4 +12,5 @@ mv detection_on_demand/docs docs/detection_on_demand
 mv detection_on_demand/README.md docs/detection_on_demand
 rm -r detection_on_demand
 
-sed -n '/Getting/,$p' docs/detection_on_demand/README.md | sed 's/import\ detection/from\ fireeye\ import\ detection/' > docs/detection_on_demand/README.md
+sed -n '/Getting/,$p' docs/detection_on_demand/README.md | sed '2d' | sed '/Please\ follow/d' > docs/detection_on_demand/README.md.new
+rm docs/detection_on_demand/README.md && mv docs/detection_on_demand/README.md.new docs/detection_on_demand/README.md
