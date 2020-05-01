@@ -25,3 +25,4 @@ git clone https://github.com/fireeye/fireeye-python.git
 Usage
 -----
 [Detection on Demand](./docs/detection_on_demand)
+[Helix](./docs/helix)
