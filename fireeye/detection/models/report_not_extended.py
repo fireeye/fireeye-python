@@ -16,7 +16,7 @@ import re  # noqa: F401
 
 import six
 
-from detection.configuration import Configuration
+from fireeye.detection.configuration import Configuration
 
 
 class ReportNotExtended(object):

@@ -1,4 +1,4 @@
-# detection.HashesApi
+# fireeye.detection.HashesApi
 
 All URIs are relative to *https://feapi.marketplace.apps.fireeye.com*
 
@@ -20,10 +20,10 @@ This endpoint fetches the results of a file submission by its MD5 hash.
 ```python
 from __future__ import print_function
 import time
-import detection
-from detection.rest import ApiException
+import fireeye.detection
+from fireeye.detection.rest import ApiException
 from pprint import pprint
-configuration = detection.Configuration()
+configuration = fireeye.detection.Configuration()
 # Configure API key authorization: FireEyeAPIKey
 configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -32,7 +32,7 @@ configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Defining host is optional and default to https://feapi.marketplace.apps.fireeye.com
 configuration.host = "https://feapi.marketplace.apps.fireeye.com"
 # Create an instance of the API class
-api_instance = detection.HashesApi(detection.ApiClient(configuration))
+api_instance = fireeye.detection.HashesApi(fireeye.detection.ApiClient(configuration))
 hash_id = '4ba739fd8c216809e485e7972597c995' # str | The MD5 hash of a file you would like to request the malware analysis results for.
 
 try:

@@ -8,6 +8,5 @@ setup(
   url="https://github.com/fireeye/fireeye-python",
   author="FireEye",
   license="MIT",
-  packages=["detection_on_demand/feye_detection"],
   platforms=["any"]
 )

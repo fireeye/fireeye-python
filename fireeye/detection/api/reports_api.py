@@ -18,8 +18,8 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from detection.api_client import ApiClient
-from detection.exceptions import (
+from fireeye.detection.api_client import ApiClient
+from fireeye.detection.exceptions import (
     ApiTypeError,
     ApiValueError
 )

@@ -1,4 +1,4 @@
-# detection.PresignedUrlApi
+# fireeye.detection.PresignedUrlApi
 
 All URIs are relative to *https://feapi.marketplace.apps.fireeye.com*
 
@@ -20,10 +20,10 @@ This endpoint fetches a presigned URL link to a browser viewable report.
 ```python
 from __future__ import print_function
 import time
-import detection
-from detection.rest import ApiException
+import fireeye.detection
+from fireeye.detection.rest import ApiException
 from pprint import pprint
-configuration = detection.Configuration()
+configuration = fireeye.detection.Configuration()
 # Configure API key authorization: FireEyeAPIKey
 configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -32,7 +32,7 @@ configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
 # Defining host is optional and default to https://feapi.marketplace.apps.fireeye.com
 configuration.host = "https://feapi.marketplace.apps.fireeye.com"
 # Create an instance of the API class
-api_instance = detection.PresignedUrlApi(detection.ApiClient(configuration))
+api_instance = fireeye.detection.PresignedUrlApi(fireeye.detection.ApiClient(configuration))
 report_id = '874da611-f82a-4331-afde-5943f4facb92' # str | The report ID returned after successfully submitting a file.
 expiry = 1 # int | Expiry (in hours) for browser viewable report presigned URL link. Default value is 72 hours.  Minimum is 1 hour, and maximum is 8760 hours (365 days). (optional)
 

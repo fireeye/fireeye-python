@@ -25,7 +25,7 @@ import six
 from six.moves.urllib.parse import urlencode
 import urllib3
 
-from detection.exceptions import ApiException, ApiValueError
+from fireeye.detection.exceptions import ApiException, ApiValueError
 
 
 logger = logging.getLogger(__name__)

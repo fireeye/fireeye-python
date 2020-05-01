@@ -24,10 +24,10 @@ import tempfile
 import six
 from six.moves.urllib.parse import quote
 
-from detection.configuration import Configuration
-import detection.models
-from detection import rest
-from detection.exceptions import ApiValueError
+from fireeye.detection.configuration import Configuration
+import fireeye.detection.models
+from fireeye.detection import rest
+from fireeye.detection.exceptions import ApiValueError
 
 
 class ApiClient(object):
@@ -280,7 +280,7 @@ class ApiClient(object):
             if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
-                klass = getattr(detection.models, klass)
+                klass = getattr(fireeye.detection.models, klass)
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
