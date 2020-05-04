@@ -5,7 +5,7 @@ import os
 import requests
 import logging
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 logger = logging.getLogger("fireeye")
 
 class Detection:
@@ -40,7 +40,17 @@ class Detection:
 
   detection = fireeyepy.Detection(key="yourapikeyhere")
 
-  result = detection.get_file_result("yoursubmissionkey")
+  result = detection.get_report("report_id")
+  ```
+  ------------------------------
+
+  Example of getting a presigned URL for a browser viewable report
+  ```python
+  import fireeyepy
+
+  detection = fireeyepy.Detection(key="yourapikeyhere")
+
+  result = detection.get_presigned_url("report_id")
   ```
   ------------------------------
 
@@ -75,12 +85,20 @@ class Detection:
     return self.post(self.api_host, "/files", body, files)
 
   def get_report(self, report_id, extended=False):
-    """Allows you to get a list of all of your submissions.
+    """Allows you to get the report details for a file or hash submission.
     
     Returns:
-        dict -- Returns a dict of all of the submissions under your API key.
+        dict -- Returns the report details
     """
     return self.get(self.api_host, "/reports/{}".format(report_id), {"extended": extended})
+
+  def get_presigned_url(self, report_id, expiry=72):
+    """Allows you to get a presigned URL for a browser viewable version of the analysis report
+    
+    Returns:
+        dict -- Returns the presigned URL details
+    """
+    return self.get(self.api_host, "/presigned-url/{}".format(report_id), {"expiry": expiry})
 
   def get_hash(self, hash):
     """Allows you to get the malware analysis results for a given hash.
