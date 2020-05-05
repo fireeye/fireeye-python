@@ -28,7 +28,7 @@ class Detection:
 
   result = detection.submit_file(
     files={
-      "file": ("filenamehere.txt", open("path/to/filenamehere.txt", "r"))
+      "file": ("filenamehere.txt", open("path/to/filenamehere.txt", "rb"))
     }
   )
   ```
