@@ -4,6 +4,8 @@
 # FireEye Client Library for Python
 This is the Python client library for all things FireEye API. Currently it only supports FireEye's Detection On Demand but will have support for other FireEye API's soon.
 
+For more API information, visit the [FireEye Developer Hub](https://fireeye.dev)
+
 Installation
 ------------
 
@@ -34,6 +36,8 @@ Construct a Detection object with your api key:
 ```python
 detection = fireeyepy.Detection(key=api_key)
 ```
+To obtain a free trial API key, subscribe on the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B07XSMKK41)
+
 ### Upload A File
 ```python
 response = detection.submit_file(
@@ -50,6 +54,11 @@ response = detection.get_report(report_id)
 You may also provide the optional `extended=True` flag to get the full, in-depth report:
 ```python
 response = detection.get_report(report_id, extended=True)
+```
+
+### Retrieve Presigned URL for Dashboard Report
+```python
+result = detection.get_presigned_url(report_id)
 ```
 
 ### Perform Hash Lookup
