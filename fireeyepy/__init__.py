@@ -79,7 +79,7 @@ class Detection:
     
     Keyword Arguments:
         file_name {string} -- The name of the file
-        contents {io.TextIOWrapper} -- The contents of the file in binary
+        contents {io.BufferedIOBase} -- The contents of the file in binary
         file_size_limit {integer} -- The number of bytes to send to the detection service from the beginning of the file.  Files that are smaller than the limit will be sent in their entirety.  Files that are larger than this limit will only have the first 'n' bytes sent.  Default is 32 MB (32,000,000 bytes).
     
     Returns:
