@@ -5,7 +5,7 @@ import os
 import requests
 import logging
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 logger = logging.getLogger("fireeye")
 
 class Detection:
@@ -85,6 +85,7 @@ class Detection:
     Returns:
         dict -- Returns a dict of the http response.
     """
+    contents.seek(0) # Make sure the file handler is at byte 0 so we can read the next 'n' bytes
     files = {
       "file": (file_name, contents.read(file_size_limit))
     }
