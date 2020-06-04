@@ -40,11 +40,12 @@ To obtain a free trial API key, subscribe on the [AWS Marketplace](https://aws.a
 
 ### Upload A File
 ```python
-response = detection.submit_file(
-  files={
-    "file": ('filename', open('./path/to/filename', 'rb'))
-  }
-)
+response = detection.submit_file(file_name="myfile.txt", contents=open("path/to/myfile.txt", "rb"))
+```
+ By default, submit_file() will only send the first 32 MB (32,000,000 bytes) of a file, which is the API limit, but this can be configured by setting the "file_size_limit" option to any positive integer, where the unit is bytes.  While you can send more than 32 MB, the API will only use the first 32 MB itself, so this option will save network bandwidth.
+```
+# Send the first 10 MB of the file
+result = detection.submit_file(file_name="myfile.txt", contents=open("path/to/myfile.txt", "rb"), file_size_limit=10000000)
 ```
 
 ### Retrieve File Report

@@ -5,7 +5,7 @@ import os
 import requests
 import logging
 
-__version__ = "0.1.0"
+__version__ = "1.0.2"
 logger = logging.getLogger("fireeye")
 
 class Detection:
@@ -26,11 +26,13 @@ class Detection:
 
   detection = fireeyepy.Detection(key="yourapikeyhere")
 
-  result = detection.submit_file(
-    files={
-      "file": ("filenamehere.txt", open("path/to/filenamehere.txt", "rb"))
-    }
-  )
+  result = detection.submit_file(file_name="myfile.txt", contents=open("path/to/myfile.txt", "rb"))
+  ```
+
+  By default, submit_file() will only send the first 32 MB (32,000,000 bytes) of a file, which is the API limit, but this can be configured by setting the "file_size_limit" option to any positive integer, where the unit is bytes.  While you can send more than 32 MB, the API will only use the first 32 MB itself, so this option will save network bandwidth.
+  ```
+  # Send the first 10 MB of the file
+  result = detection.submit_file(file_name="myfile.txt", contents=open("path/to/myfile.txt", "rb"), file_size_limit=10000000)
   ```
   ------------------------------
 
@@ -72,17 +74,23 @@ class Detection:
     self.headers = {"User-Agent": user_agent, "feye-auth-key": key}
     self.session = requests.Session()
   
-  def submit_file(self, body=None, files=None):
-    """Allows you to submit a file object for malware analysis.
+  def submit_file(self, file_name, contents, file_size_limit=32000000):
+    """Allows you to submit a binary file object for malware analysis.
     
     Keyword Arguments:
-        body {dict} -- The body of your http request. This is optional. (default: {None})
-        files {io.TextIOWrapper} -- The file you will be submitting for analysis. (default: {None})
+        file_name {string} -- The name of the file
+        contents {io.BufferedIOBase} -- The contents of the file in binary
+        file_size_limit {integer} -- The number of bytes to send to the detection service from the beginning of the file.  Files that are smaller than the limit will be sent in their entirety.  Files that are larger than this limit will only have the first 'n' bytes sent.  Default is 32 MB (32,000,000 bytes).
     
     Returns:
         dict -- Returns a dict of the http response.
     """
-    return self.post(self.api_host, "/files", body, files)
+    contents.seek(0) # Make sure the file handler is at byte 0 so we can read the next 'n' bytes
+    files = {
+      "file": (file_name, contents.read(file_size_limit))
+    }
+
+    return self.post(self.api_host, "/files", None, files)
 
   def get_report(self, report_id, extended=False):
     """Allows you to get the report details for a file or hash submission.
