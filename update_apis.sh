@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Update Detection on Demand
-openapi-generator generate -i ../developer-hub/src/apis/detection_on_demand.yml -o detection_on_demand -g python --package-name fireeye.detection
+openapi-generator generate -i ../developer-hub/src/apis/detection_on_demand.yml -o detection_on_demand -g python --skip-validate-spec --package-name fireeye.detection
 rm -r fireeye/detection
 mv detection_on_demand/fireeye/detection fireeye
 
@@ -13,6 +13,20 @@ rm -r detection_on_demand
 
 sed -n '/Getting/,$p' docs/detection_on_demand/README.md | sed '2d' | sed '/Please\ follow/d' > docs/detection_on_demand/README.md.new
 rm docs/detection_on_demand/README.md && mv docs/detection_on_demand/README.md.new docs/detection_on_demand/README.md
+
+# Update Mandiant Engine
+openapi-generator generate -i ~/OneDrive\ -\ FireEye\,\ Inc/api_products/intel_mandiant_engine/mandiant_engine.yaml -o intel -g python --skip-validate-spec --package-name fireeye.intel
+rm -r fireeye/intel
+mv intel/fireeye/intel fireeye
+
+mkdir docs/intel
+rm -r docs/intel/docs
+mv intel/docs docs/intel
+mv intel/README.md docs/intel
+rm -r intel
+
+sed -n '/Getting/,$p' docs/intel/README.md | sed '2d' | sed '/Please\ follow/d' > docs/intel/README.md.new
+rm docs/intel/README.md && mv docs/intel/README.md.new docs/intel/README.md
 
 # Update Helix
 # openapi-generator generate -i ~/OneDrive\ -\ FireEye\,\ Inc/api_products/helix/helix_swagger.yaml -o helix -g python --package-name fireeye.helix

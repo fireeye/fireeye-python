@@ -23,25 +23,40 @@ import time
 import fireeye.detection
 from fireeye.detection.rest import ApiException
 from pprint import pprint
-configuration = fireeye.detection.Configuration()
+# Defining the host is optional and defaults to https://feapi.marketplace.apps.fireeye.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireeye.detection.Configuration(
+    host = "https://feapi.marketplace.apps.fireeye.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: FireEyeAPIKey
-configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
+configuration = fireeye.detection.Configuration(
+    host = "https://feapi.marketplace.apps.fireeye.com",
+    api_key = {
+        'feye-auth-key': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['feye-auth-key'] = 'Bearer'
 
-# Defining host is optional and default to https://feapi.marketplace.apps.fireeye.com
-configuration.host = "https://feapi.marketplace.apps.fireeye.com"
-# Create an instance of the API class
-api_instance = fireeye.detection.PresignedUrlApi(fireeye.detection.ApiClient(configuration))
-report_id = '874da611-f82a-4331-afde-5943f4facb92' # str | The report ID returned after successfully submitting a file.
+# Enter a context with an instance of the API client
+with fireeye.detection.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireeye.detection.PresignedUrlApi(api_client)
+    report_id = '874da611-f82a-4331-afde-5943f4facb92' # str | The report ID returned after successfully submitting a file.
 expiry = 1 # int | Expiry (in hours) for browser viewable report presigned URL link. Default value is 72 hours.  Minimum is 1 hour, and maximum is 8760 hours (365 days). (optional)
 
-try:
-    # Get a presigned URL
-    api_response = api_instance.get_presigned_url(report_id, expiry=expiry)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PresignedUrlApi->get_presigned_url: %s\n" % e)
+    try:
+        # Get a presigned URL
+        api_response = api_instance.get_presigned_url(report_id, expiry=expiry)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PresignedUrlApi->get_presigned_url: %s\n" % e)
 ```
 
 ### Parameters

@@ -2,30 +2,47 @@
 
 ```python
 from __future__ import print_function
+
 import time
 import fireeye.detection
 from fireeye.detection.rest import ApiException
 from pprint import pprint
 
-configuration = fireeye.detection.Configuration()
+# Defining the host is optional and defaults to https://feapi.marketplace.apps.fireeye.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireeye.detection.Configuration(
+    host = "https://feapi.marketplace.apps.fireeye.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: FireEyeAPIKey
-configuration.api_key['feye-auth-key'] = 'YOUR_API_KEY'
+configuration = fireeye.detection.Configuration(
+    host = "https://feapi.marketplace.apps.fireeye.com",
+    api_key = {
+        'feye-auth-key': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['feye-auth-key'] = 'Bearer'
 
-# Defining host is optional and default to https://feapi.marketplace.apps.fireeye.com
-configuration.host = "https://feapi.marketplace.apps.fireeye.com"
-# Create an instance of the API class
-api_instance = fireeye.detection.FilesApi(fireeye.detection.ApiClient(configuration))
-file = '/path/to/file' # file | This is the binary file that you want to submit for malware analysis.
 
-try:
-    # Submit a single file for analysis
-    api_response = api_instance.post_file(file)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling FilesApi->post_file: %s\n" % e)
+# Enter a context with an instance of the API client
+with fireeye.detection.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireeye.detection.FilesApi(api_client)
+    file = '/path/to/file' # file | This is the binary file that you want to submit for malware analysis.
 
+    try:
+        # Submit a single file for analysis
+        api_response = api_instance.post_file(file)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FilesApi->post_file: %s\n" % e)
+    
 ```
 
 ## Documentation for API Endpoints
