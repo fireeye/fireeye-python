@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO: Need to update README.md usage links to reflect all packages being generated
+
 # Update Detection on Demand
 openapi-generator generate -i ../developer-hub/src/apis/detection_on_demand.yml -o detection_on_demand -g python --skip-validate-spec --package-name fireeye.detection
 rm -r fireeye/detection
