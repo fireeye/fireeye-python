@@ -40,12 +40,27 @@ To obtain a free trial API key, subscribe on the [AWS Marketplace](https://aws.a
 
 ### Upload A File
 ```python
-response = detection.submit_file(file_name="myfile.txt", contents=open("path/to/myfile.txt", "rb"))
+  import fireeyepy
+
+  detection = fireeyepy.Detection(key="yourapikeyhere")
+
+  result = detection.submit_file(
+    files={
+      "file": ('filename', open('./path/to/filename', 'rb'))
+    }
+  )
 ```
- By default, submit_file() will only send the first 32 MB (32,000,000 bytes) of a file, which is the API limit, but this can be configured by setting the "file_size_limit" option to any positive integer, where the unit is bytes.  While you can send more than 32 MB, the API will only use the first 32 MB itself, so this option will save network bandwidth.
-```
-# Send the first 10 MB of the file
-result = detection.submit_file(file_name="myfile.txt", contents=open("path/to/myfile.txt", "rb"), file_size_limit=10000000)
+With configuration options:
+```python
+  result = detection.submit_file(
+    body={
+      "file_name": "different_name.txt",
+      "screenshot": true
+    },
+    files={
+      "file": ('filename', open('./path/to/filename', 'rb'))
+    }
+  )
 ```
 
 ### Retrieve File Report
@@ -65,4 +80,9 @@ result = detection.get_presigned_url(report_id)
 ### Perform Hash Lookup
 ```python
 response = detection.get_hash(hash)
+```
+
+### Get a report artifact
+```python
+artifact = detection.get_artifact(report_id="8d0aa90b-8bf3-4483-ae3b-0ded00d157ab", artifact_type="screenshot")
 ```
