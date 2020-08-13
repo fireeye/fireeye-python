@@ -63,7 +63,16 @@ With configuration options:
   )
 ```
 
-### Retrieve File Report
+### Submit URLs
+```python
+  import fireeyepy
+
+  detection = fireeyepy.Detection(key="yourapikeyhere")
+
+  result = detection.submit_urls(["url1","url2",...])
+```
+
+### Retrieve File or URL Report
 ```python
 response = detection.get_report(report_id)
 ```
@@ -85,4 +94,9 @@ response = detection.get_hash(hash)
 ### Get a report artifact
 ```python
 artifact = detection.get_artifact(report_id="8d0aa90b-8bf3-4483-ae3b-0ded00d157ab", artifact_type="screenshot")
+```
+
+### Get the health of the Detection on Demand service
+```python
+health = detection.get_health()
 ```

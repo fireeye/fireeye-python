@@ -1,3 +1,6 @@
+### Version 1.2.4
+- Added function to submit URLs to the DoD service
+- Added function to get the health of the DoD service
 ### Version 1.1.0
 - Reverted the file_submit function back to 0.1.0 since the body parameter is used for additional options and specifying file size cutoffs is not the preferred way to handle large files.
 - Added the get_artifact() function.

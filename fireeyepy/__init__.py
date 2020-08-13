@@ -5,7 +5,7 @@ import os
 import requests
 import logging
 
-__version__ = "1.1.0"
+__version__ = "1.2.4"
 logger = logging.getLogger("fireeye")
 
 class Detection:
@@ -45,6 +45,18 @@ class Detection:
     }
   )
   ```
+
+  ------------------------------
+
+  Example of sending one or more URLs for malware analysis.
+  ```python
+  import fireeyepy
+
+  detection = fireeyepy.Detection(key="yourapikeyhere")
+
+  result = detection.submit_urls(["url1","url2",...])
+  ```
+
   ------------------------------
 
   Example of getting a file result from a previous analysis
@@ -86,7 +98,21 @@ class Detection:
 
   result = detection.get_artifact(report_id="8d0aa90b-8bf3-4483-ae3b-0ded00d157ab", artifact_type="screenshot")
   ```
+
+  ------------------------------
+
+  Example of getting the health of the service.
+
+  ```python
+  import fireeyepy
+
+  detection = fireeyepy.Detection(key="yourapikeyhere")
+
+  health = detection.get_health()
+  ```
   """
+
+
 
   def __init__(self,key=None):
     self.api_key = key or os.environ.get("FIREEYE_API_KEY", None)
@@ -108,6 +134,29 @@ class Detection:
         dict -- Returns a dict of the http response.
     """
     return self.post(self.api_host, "/files", body, files)
+
+  def submit_urls(self, urls=[], body=None):
+    """Allows you to submit one or more URLs for malware analysis.
+    
+    Keyword Arguments:
+        body {dict} -- The body of your http request. This is optional. (default: {None})
+        urls {string} -- The URLs you will be submitting. (default: {None})
+    
+    Returns:
+        dict -- Returns a dict of the http response.
+    """
+    formatted_urls = "[" + ",".join(list(map(lambda url: url.replace(url, f'"{url}"'), urls))) + "]"
+    url_submission = { "urls": formatted_urls}
+
+    return self.post(self.api_host, "/urls", body, url_submission)
+
+  def get_health(self):
+    """Allows you to get the status of the DoD service, as well as quota information for the API key.
+    
+    Returns:
+        dict -- Returns the health details
+    """
+    return self.get(self.api_host, "/health")
 
   def get_report(self, report_id, extended=False):
     """Allows you to get the report details for a file or hash submission.

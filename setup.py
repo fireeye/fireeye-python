@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
   name="fireeyepy",
-  version="1.1.0",
+  version="1.2.4",
   description="FireEye Client Library for Python",
   long_description=long_description,
   long_description_content_type="text/markdown",
